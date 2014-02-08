@@ -15,10 +15,13 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.npogulanik.paquimetro.fsm.IdleState;
+import com.npogulanik.paquimetro.fsm.ParquimetroContext;
 import com.npogulanik.parquimetro.entity.ConsultaCredito;
 import com.npogulanik.parquimetro.entity.Entrada;
 import com.npogulanik.parquimetro.entity.Greeting;
@@ -27,70 +30,46 @@ import com.npogulanik.parquimetro.entity.ParamsEntrada;
 public class MainActivity extends Activity {
     private ViewFlipper mBottomFlipper,mTopFlipper;
     private EditText scannedValue;
-    private DisplayManager displayManager = new DisplayManager(this);
-    private Handler handler;
-    private Runnable runnable;
     private RestClient restClient = new RestClient();
+    private DisplayManager displayManager;
+    private InputManager inputManager;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-				
+		
+		displayManager = DisplayManager.getInstance();
+		displayManager.setContext(this);
+		
+		inputManager = InputManager.getInstance();
+		inputManager.setContext(this);
+		
 		scannedValue=(EditText)findViewById(R.id.cardCode);
 		mBottomFlipper = ((ViewFlipper)findViewById(R.id.flipperBottom));
 		mTopFlipper = ((ViewFlipper)findViewById(R.id.flipperTop));
-	    handler = new Handler();
-		scannedValue.addTextChangedListener(new TextWatcher() {	
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-					
-			}
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-			}
-			
-			@Override
-			public void afterTextChanged(Editable s) {
-				if (s.length() > 1) {
-				      char lastCharacter = s.charAt(s.length() - 1); 
-				      if (lastCharacter == '\n') { 
-				    	  String barcode = s.subSequence(0, s.length() - 1).toString();
-				    	  scannedValue.setText("");
 		
-				    	  if (BarCodeHolder.isSecondSwipe(barcode)){
-				    		  handler.removeCallbacks(runnable);
-				    		  displayManager.stopFlipping(mBottomFlipper);
-				    		  displayManager.showMessage(mTopFlipper, "Procesando entrada...");
-				    		  HttpRequestTask task = new HttpRequestTask();
-					    	  task.applicationContext = MainActivity.this;
-					    	  //((TextView)mFlipper.getChildAt(0)).setText("");
-					    	  task.execute(barcode);
-				    	  } else {
-				    		  runnable = new Runnable() { 
-				    		         public void run() { 
-				    		        	 BarCodeHolder.reset();
-				    		        	 displayManager.stopFlipping(mTopFlipper);
-				    		        	 displayManager.showMessage(mBottomFlipper, getString(R.string.text_swipe));
-				    		         } 
-				    		  };
-				    		  displayManager.stopFlipping(mBottomFlipper);
-				    		  displayManager.stopFlipping(mTopFlipper);
-				    		  displayManager.showMessage(mBottomFlipper, getString(R.string.text_swipe_again));
-				    		  handler.postDelayed(runnable, 5000);    		  
-				    	  }
-				      }
-				}
-			}
-		});
+		inputManager.setScannedValue(scannedValue);
+		
+		
+		displayManager.setTopFlipper(mTopFlipper);
+		displayManager.setBottomFlipper(mBottomFlipper);
+		
+		ParquimetroContext parquimetroContext = new ParquimetroContext();
+		parquimetroContext.setState(new IdleState());
+		parquimetroContext.doAction();
+		
+		inputManager.setParquimetroContext(parquimetroContext);
+		
+		View decorView = getWindow().getDecorView();
+		int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN;
+		decorView.setSystemUiVisibility(uiOptions);
+		
+		inputManager.startListeningForEvents();
 	}
 	
 	@Override
 	protected void onResume() {
-		displayManager.showMessage(mBottomFlipper, getString(R.string.text_swipe));
-		//Intent intent = new Intent(this, AnimationActivity.class);
-	    //startActivity(intent);
 		super.onResume();
 	};
 	
@@ -138,7 +117,7 @@ public class MainActivity extends Activity {
 		}
 	}
 	
-	
+	/*
 	private class HttpRequestTask extends AsyncTask<String, Void, Greeting> {
 		private ProgressDialog dialog;
 		private Exception mException;
@@ -184,5 +163,5 @@ public class MainActivity extends Activity {
         }
 
     }
-	}
+	}*/
 }
