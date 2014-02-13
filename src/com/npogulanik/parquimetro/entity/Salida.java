@@ -1,6 +1,6 @@
 package com.npogulanik.parquimetro.entity;
 
-public class Salida {
+public class Salida implements IResult{
 	private Response salida;
 	
 	public Response getSalida() {

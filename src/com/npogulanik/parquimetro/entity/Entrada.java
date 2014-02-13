@@ -1,7 +1,7 @@
 package com.npogulanik.parquimetro.entity;
 
 
-public class Entrada {
+public class Entrada implements IResult {
 	private Response entrada;
 	
 	public Response getEntrada() {
@@ -86,7 +86,5 @@ public class Entrada {
 			Saldo = saldo;
 		}
         
-    }
-	
-	
+    }	
 }

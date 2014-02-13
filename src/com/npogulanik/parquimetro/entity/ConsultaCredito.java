@@ -1,6 +1,6 @@
 package com.npogulanik.parquimetro.entity;
 
-public class ConsultaCredito {
+public class ConsultaCredito extends AbstractTransaction {
 	String CreditoID;
 	String CreditoChapa;
 	String CreditoFecha;

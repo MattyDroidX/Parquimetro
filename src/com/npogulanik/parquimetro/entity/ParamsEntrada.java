@@ -1,6 +1,6 @@
 package com.npogulanik.parquimetro.entity;
 
-public class ParamsEntrada {
+public class ParamsEntrada implements IParams{
 	String chapa;
 	String linea;
 	String posta;

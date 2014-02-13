@@ -1,6 +1,7 @@
 package com.npogulanik.parquimetro;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.animation.AnimationUtils;
 import android.widget.ViewFlipper;
 import android.widget.TextView;
@@ -9,6 +10,8 @@ public class DisplayManager {
 	private Context context;
 	private ViewFlipper topFlipper;
 	private ViewFlipper bottomFlipper;
+	private TextView timerText;
+	private TextView saldoText;
 	private static DisplayManager instance;
 	
 	private DisplayManager(){
@@ -29,26 +32,60 @@ public class DisplayManager {
 		return this.context;
 	}
 	
-	public void setTopMessage(String message){
-		this.showMessage(this.topFlipper,message);
+	public void setTopMessage(String message,int color){
+		this.showMessage(this.topFlipper,message,color);
 	}
 	
-	public void setBottomMessage(String message){
-		this.showMessage(this.bottomFlipper,message);
+	public void setBottomMessage(String message,int color){
+		this.showMessage(this.bottomFlipper,message,color);
 	}
 	
-	private  void showMessage(ViewFlipper flipper, String string) {
-		((TextView)flipper.getChildAt(0)).setText(string);
+	public void setSuccessMessage(String message, String saldo, int color){
+		this.showSuccessMessage(this.topFlipper,message,saldo,color);
+	}
+	
+	private  void showMessage(ViewFlipper flipper, String string,int color) {
+		TextView textView = ((TextView)flipper.getChildAt(0));
+		textView.setTextColor(color);
+		textView.setText(string);
 		flipper.startFlipping();
 		flipper.setInAnimation(AnimationUtils.loadAnimation(this.context, android.R.anim.fade_in));
 		flipper.setOutAnimation(AnimationUtils.loadAnimation(this.context, android.R.anim.fade_out));
 	}
 	
-	public void StopFlippingTop(){
+	private  void showSuccessMessage(ViewFlipper flipper, String mensaje,String saldo,int color) {
+		TextView textView = ((TextView)flipper.getChildAt(0));
+		textView.setTextColor(color);
+		textView.setText(mensaje);
+		TextView textView1 = ((TextView)flipper.getChildAt(1));
+		textView1.setTextColor(Color.BLACK);
+		textView1.setText(saldo);
+		flipper.startFlipping();
+		flipper.setInAnimation(AnimationUtils.loadAnimation(this.context, android.R.anim.fade_in));
+		flipper.setOutAnimation(AnimationUtils.loadAnimation(this.context, android.R.anim.fade_out));
+	}
+	
+	public void showTimerText(String text){
+		this.timerText.setText(text);
+	}
+	
+	public void showSaldoText(String text){
+		this.saldoText.setText(text);
+	}
+	
+	public void resetSaldo(){
+		this.saldoText.setText("");
+	}
+	
+	public void stopTimer(){
+		showTimerText("");
+	}
+	
+	public void stopFlippingTop(){
 		stopFlipping(topFlipper);
 	}
 	
-	public void StopFlippingBottom(){
+	public void stopFlippingBottom(){
 		stopFlipping(bottomFlipper);
 	}
 	
@@ -58,13 +95,19 @@ public class DisplayManager {
 	}
 
 	public void setTopFlipper(ViewFlipper topFlipper) {
-		// TODO Auto-generated method stub
 	    this.topFlipper = topFlipper;	
 	}
 	
 	public void setBottomFlipper(ViewFlipper bottomFlipper) {
-		// TODO Auto-generated method stub
 	    this.bottomFlipper = bottomFlipper;	
+	}
+
+	public void setTimerText(TextView timerText) {
+		this.timerText = timerText;
+	}
+	
+	public void setSaldoText(TextView saldoText) {
+		this.saldoText = saldoText;
 	}
 
 	
