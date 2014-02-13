@@ -1,0 +1,112 @@
+-- TRANSACCION DE SALIDA SIN HABER ESTACIONADO
+salida: {
+Numero: ""
+Ano: ""
+Tarifa: ""
+Posta: ""
+Zona: ""
+Dominio: ""
+Fin: ""
+Lugar: "Vehiculo NO Estacionado"
+Importe: ""
+Saldo: ""
+}
+
+-- ALTA
+entrada: {
+Numero: " 129799"
+Ano: "2014"
+Tarifa: "B"
+Posta: "1"
+Zona: "A"
+Dominio: "EFV883"
+Inicio: "11/02/2014 17:35:31"
+Maximo: "11/02/14 19:35"
+Lugar: "Corrientes 250"
+Saldo: "262.50"
+}
+
+--ALTA VEHICULO YA ESTACIONADO
+entrada: {
+Numero: ""
+Ano: ""
+Tarifa: ""
+Posta: ""
+Zona: ""
+Dominio: ""
+Inicio: ""
+Maximo: ""
+Lugar: "Vehiculo Estacionado en este momento"
+Saldo: ""
+}
+
+-- ALTA PATENTE DESCONOCIDA
+entrada: {
+Numero: ""
+Ano: ""
+Tarifa: ""
+Posta: ""
+Zona: ""
+Dominio: ""
+Inicio: ""
+Maximo: ""
+Lugar: "Saldo Insuficiente para Estacionar"
+Saldo: ""
+}
+
+--CONSULTA DE SALDO
+{
+	CreditoID: "544406"
+	CreditoChapa: "EFV883"
+	CreditoFecha: "2014-01-06T21:05:53"
+	CreditoImporte: "200.00"
+	CreditoSaldo: "200.00"
+	CreditoDV: "5156344389"
+}
+
+--CONSULTA DE SALDO PATENTE DESCONOCIDA
+Devuelve vacio
+
+--BAJA NORMAL
+salida: {
+Numero: " 129799"
+Ano: "2014"
+Tarifa: "B"
+Posta: " 1"
+Zona: "A"
+Dominio: "EFV883"
+Fin: "11/02/2014 17:40:13"
+Lugar: "Corrientes 250"
+Importe: " 4.50"
+Saldo: "258.00"
+}
+
+//BAJA NO ESTACIONADO
+salida: {
+Numero: ""
+Ano: ""
+Tarifa: ""
+Posta: ""
+Zona: ""
+Dominio: ""
+Fin: ""
+Lugar: "Vehiculo NO Estacionado"
+Importe: ""
+Saldo: ""
+}
+
+//BAJA PATENTE DESCONOCIDA
+salida: {
+Numero: ""
+Ano: ""
+Tarifa: ""
+Posta: ""
+Zona: ""
+Dominio: ""
+Fin: ""
+Lugar: "Vehiculo NO Estacionado"
+Importe: ""
+Saldo: ""
+}
+
+ 

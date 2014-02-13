@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LevelSelector"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:paddingBottom="50dip" >
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/image"
+        android:text="Mensaje del Prompt"
+        android:textColor="#FFF" />
+
+    <LinearLayout
+        android:id="@+id/Botones"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:paddingBottom="50dip" >
+
+        <Button
+            android:id="@+id/cancelar"
+            style="@style/ButtonText"
+            android:layout_width="150dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="25dp"
+            android:layout_marginLeft="60dp"
+            android:background="@drawable/btn_red"
+            android:text="Cancelar" />
+
+        <Button
+            android:id="@+id/aceptar"
+            style="@style/ButtonText"
+            android:layout_width="150dp"
+            android:layout_alignBaseline="@+id/cancelar"
+            android:layout_alignBottom="@+id/cancelar"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_green"
+            android:text="Aceptar" />
+    </LinearLayout>
+
+</LinearLayout>
