@@ -1,5 +1,5 @@
 package com.npogulanik.parquimetro;
 
 public interface InputCallback {
-	public void inputPrformed();
+	public void inputPrformed(String barcode);
 }

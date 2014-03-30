@@ -5,14 +5,15 @@ import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.npogulanik.parquimetro.DisplayManager;
-import com.npogulanik.parquimetro.entity.ConsultaCredito;
+import com.npogulanik.parquimetro.TransactionType;
 import com.npogulanik.parquimetro.entity.IResult;
 import com.npogulanik.parquimetro.entity.Saldo;
-import com.npogulanik.parquimetro.entity.TransactionType;
 
 public class GetTask extends AsyncTask<String, String, IResult>{
 
@@ -43,13 +44,19 @@ public class GetTask extends AsyncTask<String, String, IResult>{
     @Override
     protected IResult doInBackground(String... params) {
         try{
-	    	RestTemplate restTemplate = new RestTemplate();
-	    	((SimpleClientHttpRequestFactory)restTemplate.getRequestFactory()).setReadTimeout(1000*30);
-	    	((SimpleClientHttpRequestFactory)restTemplate.getRequestFactory()).setConnectTimeout(1000*30);
-	    	restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());
-	    	ConsultaCredito[] credito = restTemplate.getForObject(this.mRestUrl, ConsultaCredito[].class);
-	    	Saldo saldo = new Saldo(credito[0].getCreditoSaldo());
-		    return saldo;
+//	    	RestTemplate restTemplate = new RestTemplate();
+//	    	//obtengo los timeouts de las preferencias
+//	    	SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(DisplayManager.getInstance().getContext());
+//			final int connectionTimeout = Integer.parseInt(SP.getString("prefWSConnectionTimeout", "30"));
+//			final int readTimeout = Integer.parseInt(SP.getString("prefWSReadTimeout", "30"));
+//	    	
+//	    	((SimpleClientHttpRequestFactory)restTemplate.getRequestFactory()).setReadTimeout(1000*readTimeout);
+//	    	((SimpleClientHttpRequestFactory)restTemplate.getRequestFactory()).setConnectTimeout(1000*connectionTimeout);
+//	    	restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());
+//	    	ConsultaCredito[] credito = restTemplate.getForObject(this.mRestUrl, ConsultaCredito[].class);
+//	    	Saldo saldo = new Saldo(credito[0].getCreditoSaldo());
+//		    return saldo;
+        	return null;
         } catch (Exception e){
         	Log.e("Error en GetTask",e.getMessage());
         	mException = e;

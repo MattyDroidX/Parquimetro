@@ -1,25 +1,40 @@
 package com.npogulanik.parquimetro;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.os.CountDownTimer;
+import android.os.DeadObjectException;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.widget.EditText;
 
-import com.npogulanik.paquimetro.fsm.IdleState;
-import com.npogulanik.paquimetro.fsm.OnSuccessState;
-import com.npogulanik.paquimetro.fsm.ParquimetroContext;
-import com.npogulanik.paquimetro.fsm.SendingTransactionState;
-import com.npogulanik.paquimetro.fsm.WaitingSecondSwipeState;
+import com.npogulanik.parquimetro.fsm.IdleState;
+import com.npogulanik.parquimetro.fsm.OnSuccessState;
+import com.npogulanik.parquimetro.fsm.ParquimetroContext;
+import com.npogulanik.parquimetro.fsm.PromptChapaState;
+import com.npogulanik.parquimetro.fsm.SendingTransactionState;
+import com.npogulanik.parquimetro.fsm.WaitingSecondSwipeState;
+
 
 public class InputManager {
 	private static InputManager instance;
 	private Context context;
 	private EditText scannedValue;
 	private CountDownTimer countDown;
+	private ArrayList<String> chapas = new ArrayList<String>();
 	private ParquimetroContext parquimetroContext = ParquimetroContext.getInstance();
 
 	private InputManager() {
+	}
+	
+	public void addChapa(String chapa){
+		chapas.add(chapa);
+	}
+	
+	public void clearChapas(){
+		chapas.clear();
 	}
 
 	public static InputManager getInstance() {
@@ -53,20 +68,27 @@ public class InputManager {
 		this.scannedValue = scannedValue;
 	}
 
-	private void startTimer() {
-		countDown = new CountDownTimer(10000, 1000) {
+	
+	public void startTimer(int seconds, final TimerCallBack timerCallBack) {
+		countDown = new CountDownTimer(seconds*1000, 1000) {
 			public void onTick(long millisUntilFinished) {
-				DisplayManager.getInstance().showTimerText(
-						String.format("%02d", Integer.valueOf(String
-								.valueOf(millisUntilFinished / 1000))));
+				timerCallBack.onTick(millisUntilFinished);
 			}
 
 			public void onFinish() {
-				BarCodeHolder.reset();
-				parquimetroContext.setState(new IdleState());
+				timerCallBack.timeExpired();
 			}
 		}.start();
+		//return timer;
 	}
+	
+	public void stopTimer(){
+		if (countDown != null) {
+			countDown.cancel();
+			countDown = null;
+		}
+	}
+	
 
 	public void startListeningForEvents(final InputCallback callback) {
 		scannedValue.addTextChangedListener(new TextWatcher() {
@@ -89,18 +111,12 @@ public class InputManager {
 							String barcode = s.subSequence(0, s.length() - 1).toString();
 							scannedValue.setText("");
 							if (callback != null){
-								callback.inputPrformed(); 
+								callback.inputPrformed(barcode); 
 							}
 							if (BarCodeHolder.isSecondSwipe(barcode)) {
-								countDown.cancel();
 								parquimetroContext.setState(new SendingTransactionState(barcode));
 							} else {
-								if (countDown != null) {
-									countDown.cancel();
-									countDown = null;
-								}
-							    startTimer();
-								parquimetroContext.setState(new WaitingSecondSwipeState(barcode));
+								parquimetroContext.setState(new PromptChapaState(barcode));
 							}
 						}
 					}

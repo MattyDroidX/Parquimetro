@@ -1,18 +1,18 @@
 package com.npogulanik.parquimetro.entity;
 
 public class Saldo implements IResult {
-	private String saldo;
+	private String Saldo;
 
 	public Saldo(String saldo) {
-		this.saldo = saldo;
+		this.Saldo = saldo;
 	}
 
 	public String getSaldo() {
-		return saldo;
+		return Saldo;
 	}
 
 	public void setSaldo(String saldo) {
-		this.saldo = saldo;
+		this.Saldo = saldo;
 	}
 	
 }

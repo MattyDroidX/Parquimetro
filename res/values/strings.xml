@@ -8,5 +8,8 @@
     <string name="text_swipe">APROXIME O DESLICE SU TARJETA</string>
     <string name="text_swipe_again">APROXIME O DESLICE SU TARJETA NUEVAMENTE</string>
     <string name="logo">logo</string>
+    <string name="prefs">Preferencias</string>
+    <string name="prefs_webservices">Web Services</string>
+    
 
 </resources>

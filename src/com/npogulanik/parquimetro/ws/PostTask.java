@@ -5,16 +5,21 @@ import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import com.npogulanik.parquimetro.DisplayManager;
+import com.npogulanik.parquimetro.TransactionType;
 import com.npogulanik.parquimetro.entity.Entrada;
+import com.npogulanik.parquimetro.entity.EntradaNueva;
 import com.npogulanik.parquimetro.entity.IParams;
 import com.npogulanik.parquimetro.entity.IResult;
 import com.npogulanik.parquimetro.entity.ParamsEntrada;
 import com.npogulanik.parquimetro.entity.ParamsSalida;
+import com.npogulanik.parquimetro.entity.Saldo;
+import com.npogulanik.parquimetro.entity.SaldoNuevo;
 import com.npogulanik.parquimetro.entity.Salida;
-import com.npogulanik.parquimetro.entity.TransactionType;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class PostTask extends AsyncTask<IParams, String, IResult>{
@@ -44,8 +49,18 @@ public class PostTask extends AsyncTask<IParams, String, IResult>{
     
     @Override
 	protected void onPreExecute() {
+    	String mensaje = "";
+    	
+    	if (this.mType == TransactionType.ENTRADA){
+    		mensaje = "Ticket de Entrada";
+    	} else if (this.mType == TransactionType.SALIDA){
+    		mensaje = "Ticket de Salida";
+    	} else if (this.mType == TransactionType.CONSULTA_CREDITO){
+    		mensaje = "Consulta de Saldo";
+    	}
+    	
 		this.dialog = ProgressDialog.show(DisplayManager.getInstance().getContext(), "Procesando..."
-				, "Ticket de " + (this.mType == TransactionType.ENTRADA ? "Entrada" : "Salida"), true);
+				, mensaje, true);
 	}
 
     @Override
@@ -53,13 +68,20 @@ public class PostTask extends AsyncTask<IParams, String, IResult>{
         try {
 	        IResult result;
 		    RestTemplate restTemplate = new RestTemplate();
-		    ((SimpleClientHttpRequestFactory)restTemplate.getRequestFactory()).setReadTimeout(1000*30);
-		    ((SimpleClientHttpRequestFactory)restTemplate.getRequestFactory()).setConnectTimeout(1000*30);
+		    //obtengo los timeouts de las preferencias
+		    SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(DisplayManager.getInstance().getContext());
+			final int connectionTimeout = Integer.parseInt(SP.getString("prefWSConnectionTimeout", "30"));
+			final int readTimeout = Integer.parseInt(SP.getString("prefWSReadTimeout", "30"));
+			
+		    ((SimpleClientHttpRequestFactory)restTemplate.getRequestFactory()).setReadTimeout(1000*readTimeout);
+		    ((SimpleClientHttpRequestFactory)restTemplate.getRequestFactory()).setConnectTimeout(1000*connectionTimeout);
 		    restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());
 		    
 		    if (mType == TransactionType.ENTRADA){
-		    	result = restTemplate.postForObject(this.mRestUrl, mParams,Entrada.class);
-		    } else {
+		    	result = restTemplate.postForObject(this.mRestUrl, mParams,EntradaNueva.class);
+		    } else if (mType == TransactionType.CONSULTA_CREDITO){
+			    result = restTemplate.postForObject(this.mRestUrl, mParams,SaldoNuevo.class);
+			} else {
 		    	result = restTemplate.postForObject(this.mRestUrl, mParams,Salida.class);
 		    }
 		    return result;
@@ -75,7 +97,15 @@ public class PostTask extends AsyncTask<IParams, String, IResult>{
     protected void onPostExecute(IResult result) {
     	this.dialog.cancel();
         if (result != null){
-        	mCallback.onTaskSuccess(result);
+        	if (mType == TransactionType.CONSULTA_CREDITO){
+        		if (((SaldoNuevo)result).getAsociado() != null){
+        			mCallback.onTaskSuccess(result);
+        		} else {
+        			mCallback.onTaskError("Error al consultar Crédito");
+        		}
+        	} else {
+        		mCallback.onTaskSuccess(result);
+        	}
         } else {
         	mCallback.onTaskError(mException.getMessage());
         }

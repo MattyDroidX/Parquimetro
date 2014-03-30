@@ -11,38 +11,36 @@
         android:id="@+id/text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/image"
-        android:text="Mensaje del Prompt"
-        android:textColor="#FFF" />
+        android:text="Seleccione Número de Posta"
+        android:textSize="30sp"
+        android:textColor="#000000" />
 
     <LinearLayout
         android:id="@+id/Botones"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
         android:background="#FFFFFF"
-        android:orientation="horizontal"
-        android:paddingBottom="50dip" >
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/cancelar"
-            style="@style/ButtonText"
-            android:layout_width="150dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginBottom="25dp"
-            android:layout_marginLeft="60dp"
-            android:background="@drawable/btn_red"
-            android:text="Cancelar" />
+<!--         <Button -->
+<!--             android:id="@+id/postaRoja" -->
+<!--             style="@style/ButtonText" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:layout_marginLeft="60dp" -->
+<!--             android:textColor="#000000" -->
+<!--             android:text="85\n Presione A" /> -->
 
-        <Button
-            android:id="@+id/aceptar"
-            style="@style/ButtonText"
-            android:layout_width="150dp"
-            android:layout_alignBaseline="@+id/cancelar"
-            android:layout_alignBottom="@+id/cancelar"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/btn_green"
-            android:text="Aceptar" />
+<!--         <Button -->
+<!--             android:id="@+id/postaVerde" -->
+<!--             style="@style/ButtonText" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:layout_toRightOf="@+id/postaRoja" -->
+<!--             android:textColor="#000000" -->
+<!--             android:text="86\n Presione B" /> -->
     </LinearLayout>
 
 </LinearLayout>

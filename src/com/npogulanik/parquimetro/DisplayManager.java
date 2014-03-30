@@ -1,7 +1,10 @@
 package com.npogulanik.parquimetro;
 
+
+
 import android.content.Context;
 import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.view.animation.AnimationUtils;
 import android.widget.ViewFlipper;
 import android.widget.TextView;
@@ -77,7 +80,7 @@ public class DisplayManager {
 		this.saldoText.setText("");
 	}
 	
-	public void stopTimer(){
+	public void stopTimerText(){
 		showTimerText("");
 	}
 	
@@ -109,7 +112,4 @@ public class DisplayManager {
 	public void setSaldoText(TextView saldoText) {
 		this.saldoText = saldoText;
 	}
-
-	
-
 }
