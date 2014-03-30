@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+ 
+    <PreferenceCategory android:title="Web Services" >
+        <EditTextPreference
+                android:title="Consulta Crédito"
+                android:defaultValue="http://190.224.102.100:8080/EstacionamientoV4/rest/AsociarChapaWS"
+                android:summary="Consulta de Crédito"
+                android:key="prefWSCredito"/>
+        <EditTextPreference
+                android:title="Alta"
+                android:defaultValue="http://190.224.102.100:8080/EstacionamientoV4/rest/EntradaWSdesa"
+                android:summary="Consulta de Alta de Estacionamiento"
+                android:key="prefWSAlta"/>
+        <EditTextPreference
+                android:title="Baja"
+                android:defaultValue="http://190.224.102.100:8080/EstacionamientoV4/rest/SalidaWSdesa"
+                android:summary="Consulta de Baja de Estacionaemiento"
+                android:key="prefWSBaja"/>
+        <EditTextPreference
+                android:title="Connection Timeout (segundos)"
+                android:defaultValue="30"
+                android:summary="Tiempo de espera para conectarse al web service"
+                android:key="prefWSConnectionTimeout"/>
+        <EditTextPreference
+                android:title="Read Timeout (segundos)"
+                android:defaultValue="30"
+                android:summary="Tiempo de espera para obtener una respuesta del web service"
+                android:key="prefWSReadTimeout"/>
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="Postas" >
+	    <EditTextPreference
+	          android:title="Posta A"
+	          android:defaultValue=""
+	          android:summary="Número de Posta A"
+	          android:key="prefPostaA" />
+	    <EditTextPreference
+                android:title="Posta B"
+                android:defaultValue=""
+                android:summary="Numero de Posta B"
+                android:key="prefPostaB"/>
+	    <EditTextPreference
+                android:title="Posta C"
+                android:defaultValue=""
+                android:summary="Numero de Posta C"
+                android:key="prefPostaC"/>
+	    <EditTextPreference
+                android:title="Posta D"
+                android:defaultValue=""
+                android:summary="Numero de Posta D"
+                android:key="prefPostaD"/>
+	</PreferenceCategory>
+    
+    <PreferenceCategory android:title="Protector de Pantalla" >
+	    <CheckBoxPreference
+	          android:title="Mostrar Protector de Pantalla"
+	          android:defaultValue="true"
+	          android:summary="Mostrar protector de Pantalla despues de un tiempo determinado"
+	          android:key="prefScreenSaverEnabled" />
+	    <EditTextPreference
+                android:title="Iniciar tras ... (segundos)"
+                android:defaultValue="20"
+                android:summary="Segundos de inactividad que deben transcurrir para lanzar el protector de pantalla"
+                android:key="prefScreenSaverTime"/>
+	</PreferenceCategory>
+	
+    <PreferenceCategory android:title="Tiempos de Espera" >
+	    <EditTextPreference
+                android:title="Selección de Chapa (segundos)"
+                android:defaultValue="20"
+                android:summary="Tiempo de espera en segundos para selección de chapa"
+                android:key="prefPromptChapaTimeout"/>
+	    <EditTextPreference
+                android:title="Selección de Posta (segundos)"
+                android:defaultValue="20"
+                android:summary="Tiempo de espera en segundos para selección de posta"
+                android:key="prefPromptPostaTimeout"/>
+        <EditTextPreference
+                android:title="Mostrar Resultados (segundos)"
+                android:defaultValue="5"
+                android:summary="Tiempo en segundos durante los cuales se muestran los resultados en pantalla"
+                android:key="prefResultsTimeout"/>
+	</PreferenceCategory> 
+	<PreferenceCategory android:title="Salir" >
+	    <Preference android:title="Seleccionar otro launcher"
+                    android:key="selectLauncher"/>
+	    <Preference android:title="Salir"
+                    android:key="exitlink"/>
+    </PreferenceCategory> 
+</PreferenceScreen>
