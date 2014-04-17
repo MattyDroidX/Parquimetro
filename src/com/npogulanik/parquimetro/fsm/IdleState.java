@@ -23,7 +23,7 @@ public class IdleState implements State {
 		DisplayManager.getInstance().resetSaldo();
 		DisplayManager.getInstance().setBottomMessage(DisplayManager.getInstance().getContext().getString(R.string.text_swipe),Color.BLACK);
 		BarCodeHolder.reset();
-		
+		/*
 		//verifico si tengo que mostrar el protector de pantalla
 		SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(DisplayManager.getInstance().getContext());
 		final boolean screenSaverEnabled = SP.getBoolean("prefScreenSaverEnabled", true);
@@ -41,7 +41,7 @@ public class IdleState implements State {
 					// TODO Auto-generated method stub
 				} 
 			});
-		}
+		}*/
 	}
 
 	@Override

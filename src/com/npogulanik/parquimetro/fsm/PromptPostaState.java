@@ -26,44 +26,49 @@ public class PromptPostaState implements State {
 	}
 	
 	private void loadPostas(){
-		SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(DisplayManager.getInstance().getContext());
-		final String postaA = SP.getString("prefPostaA", "");		
-		final String postaB = SP.getString("prefPostaB", "");
-		final String postaC = SP.getString("prefPostaC", "");		
-		final String postaD = SP.getString("prefPostaD", "");
+		SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(InputManager.getInstance().getContext());
+		final String posta1 = SP.getString("prefPosta1", "");		
+		final String posta2 = SP.getString("prefPosta2", "");
+		final String posta3 = SP.getString("prefPosta3", "");		
+		final String posta4 = SP.getString("prefPosta4", "");
 		
 		listPostas.clear();
-		if (postaA != null && postaA.length() > 0){
+		if (posta1 != null && posta1.length() > 0){
 			HashMap<String,String> map = new HashMap<String,String>();
-    		map.put(PromptPosta.KEY_LETRA,"A");
-    		map.put(PromptPosta.KEY_NUMERO,postaA);
+    		map.put(PromptPosta.KEY_LETRA,"1");
+    		map.put(PromptPosta.KEY_NUMERO,posta1);
 			listPostas.add(map);
 		}
-		if (postaB != null && postaB.length() > 0){
+		if (posta2 != null && posta2.length() > 0){
 			HashMap<String,String> map = new HashMap<String,String>();
-    		map.put(PromptPosta.KEY_LETRA,"B");
-    		map.put(PromptPosta.KEY_NUMERO,postaB);
+    		map.put(PromptPosta.KEY_LETRA,"2");
+    		map.put(PromptPosta.KEY_NUMERO,posta2);
 			listPostas.add(map);
 		}
-		if (postaC != null && postaC.length() > 0){
+		if (posta3 != null && posta3.length() > 0){
 			HashMap<String,String> map = new HashMap<String,String>();
-    		map.put(PromptPosta.KEY_LETRA,"C");
-    		map.put(PromptPosta.KEY_NUMERO,postaC);
+    		map.put(PromptPosta.KEY_LETRA,"3");
+    		map.put(PromptPosta.KEY_NUMERO,posta3);
 			listPostas.add(map);
 		}
-		if (postaD != null && postaD.length() > 0){
+		if (posta4 != null && posta4.length() > 0){
 			HashMap<String,String> map = new HashMap<String,String>();
-    		map.put(PromptPosta.KEY_LETRA,"D");
-    		map.put(PromptPosta.KEY_NUMERO,postaD);
+    		map.put(PromptPosta.KEY_LETRA,"4");
+    		map.put(PromptPosta.KEY_NUMERO,posta4);
 			listPostas.add(map);
 		}
+		//agrego una posta para ingreso manual
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put(PromptPosta.KEY_LETRA,"A");
+		map.put(PromptPosta.KEY_NUMERO,"Ingresar Posta Manualmente");
+		listPostas.add(map);
 	}
 	
 	@Override
 	public void doAction() {
 		loadPostas();
 		if (listPostas.size() >= 1){
-			PromptPosta dialog = new PromptPosta(InputManager.getInstance().getContext(),listPostas,new NumeroPostaCallback(){
+			PromptPosta dialog = new PromptPosta(InputManager.getInstance().getContext(),chapa,listPostas,new NumeroPostaCallback(){
 				@Override
 				public void onPosta(String posta) {
 					TransactionManager.getInstance().performEntrada(chapa, posta);

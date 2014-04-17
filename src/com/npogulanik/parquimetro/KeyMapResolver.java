@@ -13,22 +13,23 @@ public class KeyMapResolver {
 	
 	private KeyMapResolver(){
         myMap = new HashMap<Integer, String>();
-        myMap.put(KeyEvent.KEYCODE_U, "1");
-        myMap.put(KeyEvent.KEYCODE_Y, "2");
-        myMap.put(KeyEvent.KEYCODE_J, "3");
-        myMap.put(KeyEvent.KEYCODE_NUMPAD_9, "4");
-        myMap.put(KeyEvent.KEYCODE_DPAD_RIGHT, "5");
-        myMap.put(KeyEvent.KEYCODE_PAGE_DOWN, "6");
-        myMap.put(KeyEvent.KEYCODE_DPAD_UP, "7");
-        myMap.put(KeyEvent.KEYCODE_NUMPAD_5, "8");
-        myMap.put(KeyEvent.KEYCODE_DPAD_DOWN, "9");
-        myMap.put(KeyEvent.KEYCODE_MOVE_HOME, "*");
-        myMap.put(KeyEvent.KEYCODE_DPAD_LEFT, "0");
-        myMap.put(KeyEvent.KEYCODE_MOVE_END, "#");
-        myMap.put(KeyEvent.KEYCODE_H, "A");
-        myMap.put(KeyEvent.KEYCODE_FORWARD_DEL, "B");
-        myMap.put(KeyEvent.KEYCODE_INSERT, "C");
-        myMap.put(KeyEvent.KEYCODE_SPACE, "D");
+        myMap.put(KeyEvent.KEYCODE_1, "1");
+        myMap.put(KeyEvent.KEYCODE_2, "2");
+        myMap.put(KeyEvent.KEYCODE_3, "3");
+        myMap.put(KeyEvent.KEYCODE_4, "4");
+        myMap.put(KeyEvent.KEYCODE_5, "5");
+        myMap.put(KeyEvent.KEYCODE_6, "6");
+        myMap.put(KeyEvent.KEYCODE_7, "7");
+        myMap.put(KeyEvent.KEYCODE_8, "8");
+        myMap.put(KeyEvent.KEYCODE_9, "9");
+        myMap.put(KeyEvent.KEYCODE_0, "0");
+ 
+        myMap.put(KeyEvent.KEYCODE_A, "A");
+        myMap.put(KeyEvent.KEYCODE_B, "B");
+        myMap.put(KeyEvent.KEYCODE_C, "C");
+        myMap.put(KeyEvent.KEYCODE_D, "D");
+        myMap.put(KeyEvent.KEYCODE_POUND, "#");
+        myMap.put(KeyEvent.KEYCODE_STAR, "*");
     }
 	
 	public static KeyMapResolver getInstance(){

@@ -52,14 +52,16 @@ public class LazyAdapterPostas extends BaseAdapter {
         
         posta.setText(item.get(PromptPosta.KEY_NUMERO));
         
-        if (item.get(PromptPosta.KEY_LETRA).equals("A")){
+        if (item.get(PromptPosta.KEY_LETRA).equals("1")){
+        	thumb_image.setImageResource(R.drawable.blue_button_1);
+        } else if (item.get(PromptPosta.KEY_LETRA).equals("2")){
+        	thumb_image.setImageResource(R.drawable.blue_button_2);
+        } else if (item.get(PromptPosta.KEY_LETRA).equals("3")){
+        	thumb_image.setImageResource(R.drawable.blue_button_3);
+        }else if (item.get(PromptPosta.KEY_LETRA).equals("4")){
+        	thumb_image.setImageResource(R.drawable.blue_button_4);
+        }else if (item.get(PromptPosta.KEY_LETRA).equals("A")){
         	thumb_image.setImageResource(R.drawable.red_button_a);
-        } else if (item.get(PromptPosta.KEY_LETRA).equals("B")){
-        	thumb_image.setImageResource(R.drawable.red_button_b);
-        } else if (item.get(PromptPosta.KEY_LETRA).equals("C")){
-        	thumb_image.setImageResource(R.drawable.red_button_c);
-        }else if (item.get(PromptPosta.KEY_LETRA).equals("D")){
-        	thumb_image.setImageResource(R.drawable.red_button_d);
         }
         
         return vi;

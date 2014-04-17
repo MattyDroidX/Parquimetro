@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.npogulanik.parquimetro.DisplayManager;
-import com.npogulanik.parquimetro.DummyChapaResolver;
 import com.npogulanik.parquimetro.InputManager;
 import com.npogulanik.parquimetro.NumeroChapaCallback;
 import com.npogulanik.parquimetro.activities.PromptChapa;

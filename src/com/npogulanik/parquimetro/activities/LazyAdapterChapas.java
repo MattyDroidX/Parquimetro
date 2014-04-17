@@ -42,7 +42,7 @@ public class LazyAdapterChapas extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi=convertView;
         if(convertView==null)
-            vi = inflater.inflate(R.layout.list_row_chapas, null);
+            vi = inflater.inflate(R.layout.list_row_chapas, parent, false);
 
         TextView chapa = (TextView)vi.findViewById(R.id.chapa); 
         TextView credito = (TextView)vi.findViewById(R.id.credito); 

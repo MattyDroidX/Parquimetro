@@ -31,31 +31,31 @@
     
     <PreferenceCategory android:title="Postas" >
 	    <EditTextPreference
-	          android:title="Posta A"
+	          android:title="Posta 1"
 	          android:defaultValue=""
-	          android:summary="Número de Posta A"
-	          android:key="prefPostaA" />
+	          android:summary="Número de Posta 1"
+	          android:key="prefPosta1" />
 	    <EditTextPreference
-                android:title="Posta B"
+                android:title="Posta 2"
                 android:defaultValue=""
-                android:summary="Numero de Posta B"
-                android:key="prefPostaB"/>
+                android:summary="Numero de Posta 2"
+                android:key="prefPosta2"/>
 	    <EditTextPreference
-                android:title="Posta C"
+                android:title="Posta 3"
                 android:defaultValue=""
-                android:summary="Numero de Posta C"
-                android:key="prefPostaC"/>
+                android:summary="Numero de Posta 3"
+                android:key="prefPosta3"/>
 	    <EditTextPreference
-                android:title="Posta D"
+                android:title="Posta 4"
                 android:defaultValue=""
-                android:summary="Numero de Posta D"
-                android:key="prefPostaD"/>
+                android:summary="Numero de Posta 4"
+                android:key="prefPosta4"/>
 	</PreferenceCategory>
     
     <PreferenceCategory android:title="Protector de Pantalla" >
 	    <CheckBoxPreference
 	          android:title="Mostrar Protector de Pantalla"
-	          android:defaultValue="true"
+	          android:defaultValue="false"
 	          android:summary="Mostrar protector de Pantalla despues de un tiempo determinado"
 	          android:key="prefScreenSaverEnabled" />
 	    <EditTextPreference

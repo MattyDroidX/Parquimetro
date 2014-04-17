@@ -56,14 +56,7 @@ public class PreferencesActivity extends PreferenceActivity implements
 	                    }
 	                });     
 	    }
-	    
-	    /*
-	     * Intent i = new Intent(Intent.ACTION_MAIN);
-				i.addCategory(Intent.CATEGORY_HOME);
-				i.addCategory(Intent.CATEGORY_DEFAULT);
-				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				startActivity(Intent.createChooser(i, "Seleccione Launcher"));
-	     */
+	   
 		
 		PreferenceManager.setDefaultValues(PreferencesActivity.this, R.xml.preferences,
 				false);

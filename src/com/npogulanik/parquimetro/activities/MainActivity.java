@@ -55,10 +55,12 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		//Utils.InsertAPN(this);
+			
 		onCreateRunned = true;
 		Utils.HideStatusBar(this);
 		
-		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		//this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		
 		scannedValue=(EditText)findViewById(R.id.cardCode);
 		timerText=(TextView)findViewById(R.id.timerText);
@@ -106,16 +108,17 @@ public class MainActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		
-		ParquimetroContext parquimetroContext = ParquimetroContext.getInstance();
-		if (!(parquimetroContext.getState() instanceof IdleState)){
-			parquimetroContext.setState(new IdleState());
-		}
+//		if(onCreateRunned){
+//	        onCreateRunned = false; //important, or it will run only once.
+//	    } else {
+//	    	Utils.HideStatusBar(this);
+//	    }
+//		ParquimetroContext parquimetroContext = ParquimetroContext.getInstance();
+//		if (!(parquimetroContext.getState() instanceof IdleState)){
+//			parquimetroContext.setState(new IdleState());
+//		}
 		
-		if(onCreateRunned){
-	        onCreateRunned = false; //important, or it will run only once.
-	    } else {
-	    	Utils.HideStatusBar(this);
-	    }
+		
 		
 	};
 	

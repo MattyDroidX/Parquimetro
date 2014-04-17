@@ -57,7 +57,7 @@ public final class R {
         public static final int LevelSelector=0x7f0b0014;
         public static final int TextView01=0x7f0b0008;
         public static final int TextView02=0x7f0b0009;
-        public static final int action_exit=0x7f0b001b;
+        public static final int action_exit=0x7f0b001f;
         public static final int cardCode=0x7f0b0006;
         public static final int cardCode2=0x7f0b0002;
         public static final int chapa=0x7f0b0010;
@@ -66,20 +66,24 @@ public final class R {
         public static final int flipperText=0x7f0b0005;
         public static final int flipperTop=0x7f0b0007;
         public static final int imageView1=0x7f0b0003;
+        public static final int layout_root=0x7f0b0019;
         public static final int listChapas=0x7f0b0017;
-        public static final int listPostas=0x7f0b0019;
+        public static final int listPostas=0x7f0b001d;
         public static final int list_image=0x7f0b000f;
         public static final int list_image_posta=0x7f0b0012;
         public static final int mainLayout=0x7f0b0000;
-        public static final int menu_settings=0x7f0b001c;
+        public static final int menu_settings=0x7f0b0020;
         public static final int posta=0x7f0b0013;
         public static final int prefs=0x7f0b000c;
         public static final int saldoText=0x7f0b000b;
         public static final int text=0x7f0b0015;
+        public static final int textPosta=0x7f0b001a;
+        public static final int textPulseNumeral=0x7f0b001b;
         public static final int thumbnail=0x7f0b000e;
         public static final int timerText=0x7f0b000a;
         public static final int timerTextChapas=0x7f0b0018;
-        public static final int timerTextPostas=0x7f0b001a;
+        public static final int timerTextPosta=0x7f0b001c;
+        public static final int timerTextPostas=0x7f0b001e;
         public static final int vidview=0x7f0b000d;
         public static final int webView=0x7f0b0001;
     }
@@ -91,7 +95,8 @@ public final class R {
         public static final int list_row_postas=0x7f030004;
         public static final int prompt=0x7f030005;
         public static final int prompt_chapas=0x7f030006;
-        public static final int prompt_postas=0x7f030007;
+        public static final int prompt_posta_manual=0x7f030007;
+        public static final int prompt_postas=0x7f030008;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;

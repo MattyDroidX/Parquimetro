@@ -67,10 +67,11 @@ public class TransactionManager {
             
             @Override
 			public void onError(String message) {
+            	ParquimetroContext context = ParquimetroContext.getInstance();
             	if (ErrorResponses.no_estacionado.equalsMessage(message)){
-            		//performEntrada(chapa);
-            		ParquimetroContext context = ParquimetroContext.getInstance();
             		context.setState(new PromptPostaState(chapa));
+            	} else {
+                  	context.setState(new OnErrorState(message)); 
             	}
             }
 
