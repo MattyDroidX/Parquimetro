@@ -1,7 +1,11 @@
 package com.npogulanik.parquimetro.ws;
 
+import java.net.SocketTimeoutException;
+
+import org.apache.http.conn.ConnectTimeoutException;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
 import com.npogulanik.parquimetro.DisplayManager;
@@ -85,7 +89,10 @@ public class PostTask extends AsyncTask<IParams, String, IResult>{
 		    	result = restTemplate.postForObject(this.mRestUrl, mParams,Salida.class);
 		    }
 		    return result;
-	        
+        } catch (ResourceAccessException e){
+        	Log.e("Error en PostTask", e.getMessage());
+        	mException = new Exception("Tiempo de Espera agotado\r\nIntente Nuevamente");
+        	return null;
         } catch(Exception e){
         	Log.e("Error en PostTask", e.getMessage());
         	mException = e;
